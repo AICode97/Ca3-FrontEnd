@@ -40,26 +40,29 @@ function ApiFacade() {
         return opts;
     }
 
-    const login = (user, pass) => {
-        const options = makeOptions("POST", true, { username: user, password: pass });
-        return fetch(URL + "api/info/user", options)
+    const login = (user, password) => {
+        const options = makeOptions("POST", true, { username: user, password: password });
+        return fetch(URL + "api/login", options)
             .then(handleHttpErrors)
             .then(res => { setToken(res.token) })
     }
 
-    const fetchUser = () => {
-        const options = makeOptions("GET", true); //True add's the token
-        return fetch(URL + "/api/info/admin", options).then(handleHttpErrors);
-    }
+   
 
     const fetchData = () => {
-        return fetch(URL + "/api/swapi/demo", makeOptions("GET")).then(handleHttpErrors);
+        const options = makeOptions("GET", true); //True add's the token
+        return fetch(URL + "api/info/user", options).then(handleHttpErrors);
     }
+
+    
 
     return {
         login,
         logout,
-        fetchUser,
+        setToken,
+        getToken,
+        makeOptions,
+        loggedIn,
         fetchData
     }
 
