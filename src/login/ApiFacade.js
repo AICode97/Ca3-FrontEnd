@@ -1,4 +1,4 @@
-const URL = "https://greatslav.me";
+const URL = "http://localhost:8080/jpareststarter/";
 
 function handleHttpErrors(res) {
     if (!res.ok) {
@@ -8,7 +8,7 @@ function handleHttpErrors(res) {
 }
 
 function ApiFacade() {
-    //Insert utility-methods from a latter step (d) here
+    
     const setToken = (token) => {
         localStorage.setItem('jwtToken', token)
     }
@@ -42,14 +42,14 @@ function ApiFacade() {
 
     const login = (user, pass) => {
         const options = makeOptions("POST", true, { username: user, password: pass });
-        return fetch(URL + "/api/login", options)
+        return fetch(URL + "api/info/user", options)
             .then(handleHttpErrors)
             .then(res => { setToken(res.token) })
     }
 
     const fetchUser = () => {
         const options = makeOptions("GET", true); //True add's the token
-        return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
+        return fetch(URL + "/api/info/admin", options).then(handleHttpErrors);
     }
 
     const fetchData = () => {
