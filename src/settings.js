@@ -1,6 +1,8 @@
 const URLs = {
     "Home": "/",
     "Login": "/login",
+    "Joke": "/joke",
+    "Scrape": "/scrape",
     
 }
 
